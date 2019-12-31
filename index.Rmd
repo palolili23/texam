@@ -83,9 +83,8 @@ class: center, middle
 <center>
 ![rule](figs/rules.png)
 <center>
-
 ]
-
+.foot-note[https://r4ds.had.co.nz/]
 ---
 ### Quiz 1
 
@@ -140,12 +139,13 @@ pivot_wider(
 ```
 ]
 
+.foot-note[https://www.garrickadenbuie.com/project/tidyexplain/]
 ---
 ### Quiz
 
 We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
 ```{r, eval = FALSE, error=TRUE}
-quiz %>% 
+survey %>% 
   pivot_____(names_from = "____",
               values_from = "____")
 ```
