@@ -1,0 +1,116 @@
+---
+title: "RStudio Certification"
+subtitle: "Teaching Exam"
+author: "L. Paloma Rojas Saunero"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 3
+    theme: united
+---
+```{r setup, include = FALSE}
+library(tidyverse)
+library(kableExtra)
+mytable <- function(df){
+  kable(df) %>%
+  kable_styling(bootstrap_options = c("hover", "condensed", "responsive"),
+                full_width = F,
+                font_size = 14)}
+```
+
+## Learner persona
+
+**Kelly Katz**
+
+- **_General background_**: Kelly is a medical student, she decided to go for a Master in Clinical Research before going back to the hospital for her clinical rotations. She is very young and enthusiastic. Although she studied some statistics during high school, this is the first time that she is learning how statistics are applied in health sciences and that motivates her. 
+
+- **_Relevant experience_**: During her Master Program she learned how to do descriptive statistics and some basic analysis with SPSS, and she feels comfortable with it. She used R and Rstudio thanks to some specific biostats courses, but as she claims, it was "only copy-paste-enter pieces of code and interpret the output". So far, she did a bit of data wrangling in excel, most of her classes had already clean data ready for analysis. 
+
+- **_Perceived needs_**: Kelly has one year to present her thesis, and she will work with observational data of individuals followed over time. She will have to merge and clean all the data files that she requires for her analysis and she is a bit anxious about it. She heard about the reproducibility crisis in research during some seminars, and she feels that the best way to make her data cleaning process transparent is do it in R.
+
+- **_Special considerations_**: Kelly gets super enthusiastic about learning, but she is used to learn from books and a clearly specified curricula. The amount of information available online to learn R overwhelms her and doesn't let her focus, and that frustrates her. 
+
+- **_Needs_**: Kelly needs a clear structure and guide to learn R. A step-by-step tutorial on each topic from the The R4DS book will help her learn the basics for data wrangling and plotting.
+
+## Concept map
+
+The class will introduce the rules of tidy data and the key functions to reshape data from wide to long and viceversa. The remaining concepts in the map will be taught in a following module of the extended class. The `dplyr` package has been studied and used so far, and the students are familiarized with the pipe `%>%`.
+
+![](figs/map.png)
+
+## Formative assessments
+
+#### 1. Which of these tables meets the 3 rules of tidy data?
+
+<div class = "row">
+<div class = "col-md-6">
+
+**Table A**
+
+```{r, echo = FALSE}
+table4a %>% 
+mytable()
+```
+</div>
+
+<div class = "col-md-6">
+
+**Table B**
+
+```{r, echo = FALSE}
+table1 %>% 
+  select(- population) %>% mytable() 
+```
+
+</div>
+</div>
+
+#### 2. We need to transform table 1, to look as table 2.
+
+We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
+```{r, eval = FALSE, error=TRUE}
+quiz %>% 
+  pivot_____(names_from = "____",
+              values_from = "____")
+```
+
+```{r, echo = FALSE, include = FALSE}
+survey <-
+  tibble(
+    student = rep(c(1:3),3),
+    food = c(rep("fruit",3),rep("vegetable",3), rep("icecream",3)),
+    rate = abs(round(rnorm(9, mean = 4, sd = 3), 0))) %>% 
+  arrange(student)
+```
+
+
+<div class = "row">
+<div class = "col-md-6">
+
+**Table 1**
+```{r, echo = FALSE}
+survey %>% 
+mytable()
+```
+</div>
+
+<div class = "col-md-6">
+
+**Table 2**
+
+```{r, echo = FALSE}
+survey %>%
+  pivot_wider(names_from = food,
+              values_from = rate) %>% 
+  mytable()
+```
+
+</div>
+</div>
+
+
+## Materials
+
+- [Presentation](https://palolili23.github.io/texam/index.html)
