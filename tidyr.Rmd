@@ -9,6 +9,24 @@ output:
     toc_depth: 3
     theme: united
 ---
+```{r setup, include = FALSE}
+library(dplyr)
+library(tidyverse)
+set.seed(2020)
+survey <-
+  tibble(
+    student = rep(c(1:3),3),
+    food = c(rep("fruit",3),rep("vegetable",3), rep("icecream",3)),
+    rate = abs(round(rnorm(9, mean = 4, sd = 3), 0))) %>% 
+  dplyr::arrange(student)
+
+library(kableExtra)
+mytable <- function(df){
+  kable(df) %>%
+  kable_styling(bootstrap_options = c("hover", "condensed", "responsive"),
+                full_width = F,
+                font_size = 14)}
+```
 
 ### Open library
 
@@ -67,21 +85,60 @@ cases_pop %>%
   )
 ```
 
-### Formative assignment
+### Formative assessment{.tabset}
 
-```{r}
+#### Exercise
+
+```{r, eval = FALSE, error=TRUE}
+survey %>% 
+  pivot_____(names_from = "____",
+              values_from = "____")
+```
+
+We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
+
+<div class = "row">
+<div class = "col-md-6">
+
+**Table 1**
+```{r, echo = FALSE}
+survey %>% 
+mytable()
+```
+</div>
+
+<div class = "col-md-6">
+
+**Table 2**
+
+```{r, echo = FALSE}
+survey %>%
+  pivot_wider(names_from = food,
+              values_from = rate) %>% 
+  mytable()
+```
+
+</div>
+</div>
+
+**_To get the dataset run the following code_**
+
+```{r, eval = FALSE}
+library(dplyr)
+
 set.seed(2020)
+
 survey <-
   tibble(
     student = rep(c(1:3),3),
     food = c(rep("fruit",3),rep("vegetable",3), rep("icecream",3)),
     rate = abs(round(rnorm(9, mean = 4, sd = 3), 0))) %>% 
-  dplyr::arrange(student)
+  arrange(student)
 
 survey
 ```
 
-**Solution**
+#### Solution
 
 ```{r}
 survey %>%

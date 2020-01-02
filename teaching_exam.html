@@ -1545,8 +1545,10 @@ div.tocify {
 </div>
 <div id="formative-assessments" class="section level2">
 <h2>Formative assessments</h2>
-<div id="which-of-these-tables-meets-the-3-rules-of-tidy-data" class="section level4">
-<h4>1. Which of these tables meets the 3 rules of tidy data?</h4>
+<div id="which-of-these-tables-meets-the-3-rules-of-tidy-data" class="section level3 tabset">
+<h3>1. Which of these tables meets the 3 rules of tidy data?</h3>
+<div id="exercise" class="section level4">
+<h4>Exercise</h4>
 <div class="row">
 <div class="col-md-6">
 
@@ -1688,7 +1690,7 @@ China
 </div>
 <div class="col-md-6">
 
-<strong>Table c</strong>
+<strong>Table C</strong>
 <table class="table table-hover table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1775,8 +1777,20 @@ China
 </div>
 </div>
 </div>
-<div id="we-need-to-transform-table-1-to-look-as-table-2." class="section level4">
-<h4>2. We need to transform table 1, to look as table 2.</h4>
+<div id="solution" class="section level4">
+<h4>Solution</h4>
+<p>Correct answer is <strong>Table C</strong></p>
+<p><strong><em>Missconceptions:</em></strong></p>
+<ul>
+<li><p>It is frequent to find datasets with repeated measurements over time as in table A, students might have seen and used this type of datasets before and believe that each year represents a new variable, a new property to be measured.</p></li>
+<li><p>Although <code>rate</code> has values that reflect the state of the variable, it is a variable that is not tidy because it contains two numeric values that represent two different variables: <code>cases</code> and <code>population</code>. With those variables, it would be tidier to calculate the <code>rate</code> using <code>mutate</code>, and obtain a numeric value that can be summarised and plotted.</p></li>
+</ul>
+</div>
+</div>
+<div id="we-need-to-transform-table-1-to-look-as-table-2." class="section level3 tabset">
+<h3>2. We need to transform table 1, to look as table 2.</h3>
+<div id="exercise-1" class="section level4">
+<h4>Exercise</h4>
 <p>We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:</p>
 <pre class="r"><code>survey %&gt;% 
   pivot_____(names_from = &quot;____&quot;,
@@ -1968,6 +1982,76 @@ icecream
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<div id="solution-1" class="section level4">
+<h4>Solution</h4>
+<pre class="r"><code>survey %&gt;%
+  pivot_wider(names_from = food,
+              values_from = rate) %&gt;% 
+  mytable()</code></pre>
+<table class="table table-hover table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+student
+</th>
+<th style="text-align:right;">
+fruit
+</th>
+<th style="text-align:right;">
+vegetable
+</th>
+<th style="text-align:right;">
+icecream
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

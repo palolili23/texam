@@ -42,7 +42,9 @@ The class will introduce the rules of tidy data and the key functions to reshape
 
 ## Formative assessments
 
-#### 1. Which of these tables meets the 3 rules of tidy data?
+### 1. Which of these tables meets the 3 rules of tidy data?{.tabset}
+
+#### Exercise
 
 <div class = "row">
 <div class = "col-md-6">
@@ -63,7 +65,7 @@ mytable()
 
 <div class = "col-md-6">
 
-**Table c**
+**Table C**
 ```{r, echo = FALSE}
 table1 %>% 
   select(- population) %>% mytable() 
@@ -72,8 +74,19 @@ table1 %>%
 </div>
 </div>
 
-#### 2. We need to transform table 1, to look as table 2.
+#### Solution
 
+Correct answer is **Table C**
+
+**_Missconceptions:_**
+
+- It is frequent to find datasets with repeated measurements over time as in table A, students might have seen and used this type of datasets before and believe that each year represents a new variable, a new property to be measured.
+
+- Although `rate` has values that reflect the state of the variable, it is a variable that is not tidy because it contains two numeric values that represent two different variables: `cases` and `population`. With those variables, it would be tidier to calculate the `rate` using `mutate`, and obtain a numeric value that can be summarised and plotted.
+
+### 2. We need to transform table 1, to look as table 2. {.tabset}
+
+#### Exercise
 We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
 ```{r, eval = FALSE, error=TRUE}
 survey %>% 
@@ -115,6 +128,15 @@ survey %>%
 
 </div>
 </div>
+
+#### Solution
+
+```{r}
+survey %>%
+  pivot_wider(names_from = food,
+              values_from = rate) %>% 
+  mytable()
+```
 
 
 ## Materials
