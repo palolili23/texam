@@ -71,7 +71,7 @@ table1 %>%
 
 We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
 ```{r, eval = FALSE, error=TRUE}
-quiz %>% 
+survey %>% 
   pivot_____(names_from = "____",
               values_from = "____")
 ```
