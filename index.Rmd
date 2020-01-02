@@ -92,16 +92,21 @@ Which of these tables meets the 3 rules of tidy data?
 
 .pull-left[
 **Table A**
-
 ```{r, echo = FALSE}
 table4a %>% 
+mytable()
+```
+
+**Table B**
+```{r, echo = FALSE}
+table3 %>% 
 mytable()
 ```
 
 ]
 
 .pull-right[
-**Table B**
+**Table C**
 
 ```{r, echo = FALSE}
 table1 %>% 
@@ -122,18 +127,17 @@ library(tidyr)
 
 .pull-right[
 
-**From wide to long:**
+**From wide to long: _cols to rows_**
 ```{r, message= FALSE, eval=FALSE}
 pivot_longer(
-  columns,
+  cols,
   names_to = "name",
   values_to = "val")
 ```
 
-**From long to wide:**
+**From long to wide: _rows to cols_**
 ```{r, message= FALSE, eval = FALSE}
 pivot_wider(
-  columns,
   names_from = name,
   values_from = val)
 ```
