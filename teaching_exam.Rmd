@@ -48,17 +48,22 @@ The class will introduce the rules of tidy data and the key functions to reshape
 <div class = "col-md-6">
 
 **Table A**
-
 ```{r, echo = FALSE}
 table4a %>% 
 mytable()
 ```
+
+**Table B**
+```{r, echo = FALSE}
+table3 %>% 
+mytable()
+```
+
 </div>
 
 <div class = "col-md-6">
 
-**Table B**
-
+**Table c**
 ```{r, echo = FALSE}
 table1 %>% 
   select(- population) %>% mytable() 
