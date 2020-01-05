@@ -1,6 +1,6 @@
 ### RStudio Certification: Teaching exam
 
-- [Class slides](https://palolili23.github.io/texam/index.html)
+- [Class slides](https://palolili23.github.io/texam/slides.html)
 
 - [Class script](https://palolili23.github.io/texam/tidyr.html)
 
