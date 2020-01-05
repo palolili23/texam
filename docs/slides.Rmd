@@ -42,7 +42,7 @@ library(xaringanthemer)
 mono_accent(
   base_color = "#011A5E", 
   table_row_even_background_color = "#FFFFFF",
-  header_font_google = google_font("Lora", "500"),
+  header_font_google = google_font("Lato", "500"),
   text_font_google   = google_font("Lato", "400", "400i")
 )
 ```
@@ -64,6 +64,10 @@ class: center, middle
 
 class: center, middle
 ![map](figs/map.png)
+```{r, message= FALSE, warning = FALSE}
+library(tidyr)
+```
+
 
 ---
 
@@ -115,37 +119,90 @@ table1 %>%
 
 ]
 ---
-## Reshape
+## Reshape: Wide to long _(cols to rows)_
 
-```{r, message= FALSE, warning = FALSE}
-library(tidyr)
-```
+![w2l](figs/w2l_full.png)
+
+---
+
+## `pivot_longer()`
 
 .pull-left[
 
-![rule1](figs/tidyr-longer-wider-modified.gif)]
+![w2l_1](figs/w2l_step1.png)
+]
 
 .pull-right[
 
-**From wide to long: _cols to rows_**
 ```{r, message= FALSE, eval=FALSE}
-pivot_longer(
-  cols,
-  names_to = "name",
-  values_to = "val")
-```
-
-**From long to wide: _rows to cols_**
-```{r, message= FALSE, eval = FALSE}
-pivot_wider(
-  names_from = name,
-  values_from = val)
+pivot_longer( 
+  cols, #<<
+  names_to = "year", #<<
+  values_to = "cases")
 ```
 ]
 
-.foot-note[https://www.garrickadenbuie.com/project/tidyexplain/]
 ---
-### Quiz
+
+## `pivot_longer()`
+
+.pull-left[
+
+![w2l_2](figs/w2l_step2.png)
+]
+
+.pull-right[
+
+```{r, message= FALSE, eval=FALSE}
+pivot_longer( 
+  cols,
+  names_to = "year",
+  values_to = "cases") #<<
+```
+]
+
+---
+
+## Reshape: Long to wide _(rows to cols)_
+
+![l2w](figs/l2w_full.png)
+
+---
+
+## `pivot_wider()`
+
+.pull-left[
+
+![l2w_1](figs/l2w_step1.png)]
+
+.pull-right[
+
+```{r, message= FALSE, eval = FALSE}
+pivot_wider(
+  names_from = year, #<<
+  values_from = cases)
+```
+]
+
+---
+
+## `pivot_wider()`
+
+.pull-left[
+
+![l2w_1](figs/l2w_step2.png)]
+
+.pull-right[
+
+```{r, message= FALSE, eval = FALSE}
+pivot_wider(
+  names_from = year,
+  values_from = cases) #<<
+```
+]
+
+---
+### Quiz 2
 
 We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
 ```{r, eval = FALSE, error=TRUE}

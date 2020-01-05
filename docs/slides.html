@@ -4,7 +4,7 @@
     <title>Tidy Data</title>
     <meta charset="utf-8" />
     <meta name="author" content="L. Paloma Rojas S." />
-    <meta name="date" content="2020-01-02" />
+    <meta name="date" content="2020-01-05" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -34,6 +34,11 @@ class: center, middle
 
 class: center, middle
 ![map](figs/map.png)
+
+```r
+library(tidyr)
+```
+
 
 ---
 
@@ -181,40 +186,94 @@ Which of these tables meets the 3 rules of tidy data?
 
 ]
 ---
-## Reshape
+## Reshape: Wide to long _(cols to rows)_
 
+![w2l](figs/w2l_full.png)
 
-```r
-library(tidyr)
-```
+---
+
+## `pivot_longer()`
 
 .pull-left[
 
-![rule1](figs/tidyr-longer-wider-modified.gif)]
+![w2l_1](figs/w2l_step1.png)
+]
 
 .pull-right[
 
-**From wide to long: _cols to rows_**
 
 ```r
-pivot_longer(
-  cols,
-  names_to = "name",
-  values_to = "val")
-```
-
-**From long to wide: _rows to cols_**
-
-```r
-pivot_wider(
-  names_from = name,
-  values_from = val)
+pivot_longer( 
+* cols,
+* names_to = "year",
+  values_to = "cases")
 ```
 ]
 
-.foot-note[https://www.garrickadenbuie.com/project/tidyexplain/]
 ---
-### Quiz
+
+## `pivot_longer()`
+
+.pull-left[
+
+![w2l_2](figs/w2l_step2.png)
+]
+
+.pull-right[
+
+
+```r
+pivot_longer( 
+  cols,
+  names_to = "year",
+* values_to = "cases")
+```
+]
+
+---
+
+## Reshape: Long to wide _(rows to cols)_
+
+![l2w](figs/l2w_full.png)
+
+---
+
+## `pivot_wider()`
+
+.pull-left[
+
+![l2w_1](figs/l2w_step1.png)]
+
+.pull-right[
+
+
+```r
+pivot_wider(
+* names_from = year,
+  values_from = cases)
+```
+]
+
+---
+
+## `pivot_wider()`
+
+.pull-left[
+
+![l2w_1](figs/l2w_step2.png)]
+
+.pull-right[
+
+
+```r
+pivot_wider(
+  names_from = year,
+* values_from = cases)
+```
+]
+
+---
+### Quiz 2
 
 We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
 
@@ -238,47 +297,47 @@ survey %&gt;%
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; fruit &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; vegetable &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; icecream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; fruit &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; vegetable &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; icecream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; fruit &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; vegetable &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; icecream &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; vegetable &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; icecream &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -297,21 +356,21 @@ survey %&gt;%
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
