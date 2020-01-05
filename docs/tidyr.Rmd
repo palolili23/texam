@@ -41,48 +41,26 @@ table4a
 table2
 ```
 
-### From wide to long
+### Reshape: From wide to long
 
 ```{r}
-cases <- table4a %>% 
+table4a %>% 
   pivot_longer(
     cols = -1,
     names_to = "year",
     values_to = "cases"
   )
 
-cases
 ```
 
-### From long to wide
+### Reshape: From long to wide
 
 ```{r}
-cases_pop <- table2 %>% 
+table2 %>% 
   pivot_wider(
     names_from = type,
     values_from = count)
 
-cases_pop
-```
-
-### Reshaping
-
-```{r}
-cases %>% 
-  pivot_wider(
-    names_from = year,
-    values_from = cases
-  )
-
-```
-
-```{r}
-cases_pop %>% 
-  pivot_longer(
-    cols = c(3:4),
-    names_to = "type",
-    values_to = "count"
-  )
 ```
 
 ### Formative assessment{.tabset}

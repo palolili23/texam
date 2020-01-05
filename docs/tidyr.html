@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paloma" />
 
-<meta name="date" content="2020-01-02" />
+<meta name="date" content="2020-01-05" />
 
 <title>Tidyr: Reshape</title>
 
@@ -1521,7 +1521,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Tidyr: Reshape</h1>
 <h4 class="author">Paloma</h4>
-<h4 class="date">2020-01-02</h4>
+<h4 class="date">2020-01-05</h4>
 
 </div>
 
@@ -1566,16 +1566,14 @@ div.tocify {
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
 </div>
-<div id="from-wide-to-long" class="section level3">
-<h3>From wide to long</h3>
-<pre class="r"><code>cases &lt;- table4a %&gt;% 
+<div id="reshape-from-wide-to-long" class="section level3">
+<h3>Reshape: From wide to long</h3>
+<pre class="r"><code>table4a %&gt;% 
   pivot_longer(
     cols = -1,
     names_to = &quot;year&quot;,
     values_to = &quot;cases&quot;
-  )
-
-cases</code></pre>
+  )</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
@@ -1586,14 +1584,12 @@ cases</code></pre>
 ## 5 China       1999  212258
 ## 6 China       2000  213766</code></pre>
 </div>
-<div id="from-long-to-wide" class="section level3">
-<h3>From long to wide</h3>
-<pre class="r"><code>cases_pop &lt;- table2 %&gt;% 
+<div id="reshape-from-long-to-wide" class="section level3">
+<h3>Reshape: From long to wide</h3>
+<pre class="r"><code>table2 %&gt;% 
   pivot_wider(
     names_from = type,
-    values_from = count)
-
-cases_pop</code></pre>
+    values_from = count)</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -1603,41 +1599,6 @@ cases_pop</code></pre>
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-</div>
-<div id="reshaping" class="section level3">
-<h3>Reshaping</h3>
-<pre class="r"><code>cases %&gt;% 
-  pivot_wider(
-    names_from = year,
-    values_from = cases
-  )</code></pre>
-<pre><code>## # A tibble: 3 x 3
-##   country     `1999` `2000`
-##   &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-## 1 Afghanistan    745   2666
-## 2 Brazil       37737  80488
-## 3 China       212258 213766</code></pre>
-<pre class="r"><code>cases_pop %&gt;% 
-  pivot_longer(
-    cols = c(3:4),
-    names_to = &quot;type&quot;,
-    values_to = &quot;count&quot;
-  )</code></pre>
-<pre><code>## # A tibble: 12 x 4
-##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
 </div>
 <div id="formative-assessment" class="section level3 tabset">
 <h3>Formative assessment</h3>
