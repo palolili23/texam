@@ -136,7 +136,7 @@ table1 %>%
 
 ```{r, message= FALSE, eval=FALSE}
 pivot_longer( 
-  cols, #<<
+  cols = c(`1991`, `2000`), #<<
   names_to = "year", #<<
   values_to = "cases")
 ```
@@ -155,7 +155,7 @@ pivot_longer(
 
 ```{r, message= FALSE, eval=FALSE}
 pivot_longer( 
-  cols,
+  cols = c(`1991`, `2000`),
   names_to = "year",
   values_to = "cases") #<<
 ```
@@ -204,9 +204,9 @@ pivot_wider(
 ---
 ### Quiz 2
 
-We need to transform Table 1, to look as Table 2. Fill in the blanks, correct if necessary:
+We need to reshape the tibble that looks like table 1 to look as table 2. Fill in the blanks, correct if necessary:
 ```{r, eval = FALSE, error=TRUE}
-survey %>% 
+table %>% 
   pivot_____(names_from = "____",
               values_from = "____")
 ```
